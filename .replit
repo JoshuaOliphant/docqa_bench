@@ -1,0 +1,7 @@
+run = "poetry run python -m docqa_bench.cli run_benchmark"
+modules = ["python-3.10"]
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+run = ["sh", "-c", "poetry run python -m docqa_bench.cli run_benchmark"]
