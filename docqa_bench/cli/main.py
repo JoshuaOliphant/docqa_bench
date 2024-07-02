@@ -40,9 +40,9 @@ async def run_benchmark(pdf: str, openai_key: str, chunk_size: int,
         'vector_store':
         ChromaStore('benchmark_collection'),
         'question_generator':
-        OpenAIQuestionGenerator('gpt-3.5-turbo'),
+        OpenAIQuestionGenerator('gpt-4o'),
         'answer_generator':
-        OpenAIAnswerGenerator('gpt-3.5-turbo'),
+        OpenAIAnswerGenerator('gpt-4o'),
         'evaluator':
         F1Evaluator()
     }
