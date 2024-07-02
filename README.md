@@ -25,7 +25,7 @@ To run a benchmark, use the following command:
 poetry run python -m docqa_bench.cli.main --pdf <path_to_pdf> --chunk-size <chunk_size> --chunk-overlap <chunk_overlap> --embedding-model <embedding_model>
 
 For example:
-poetry run python -m docqa_bench.cli.main --pdf sample_pdfs/True_PDF_Sample.pdf --chunk-size 1000 --chunk-overlap 200 --embedding-model text-embedding-ada-002
+poetry run python -m docqa_bench.cli.main --pdf path/to/pdf --chunk-size 1000 --chunk-overlap 200 --embedding-model text-embedding-ada-002
 
 Make sure to set your OpenAI API key as an environment variable:
 export OPENAI_API_KEY=your_api_key_here
