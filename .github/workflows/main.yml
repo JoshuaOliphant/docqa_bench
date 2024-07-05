@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12"]
-        poetry-version: ["1.8"]
+        poetry-version: ["1.8.3"]
 
     steps:
     - uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Run image
-      uses: Gr1N/setup-poetry@v8
+      uses: abatilo/actions-poetry@v2
       with:
         poetry-version: ${{ matrix.poetry-version }}
     - name: Install dependencies
@@ -51,7 +51,7 @@ jobs:
       with:
         python-version: '3.10'
     - name: Run image
-      uses: Gr1N/setup-poetry@v8
+      uses: abatilo/actions-poetry@v2
       with:
         poetry-version: "1.8"
     - name: Install dependencies
