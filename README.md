@@ -67,13 +67,13 @@ asyncio.run(run_benchmark("Your document content here"))
 
 DocQA-Bench consists of several modular components:
 
-Document: Represents the input document. Use PreprocessedDocument for already processed text.
-Chunker: Splits the document into manageable pieces. SimpleChunker is provided out of the box.
-Embedder: Generates vector representations of text. OpenAIEmbedder uses OpenAI's embedding model.
-VectorStore: Stores and retrieves vector representations. ChromaStore is provided as a default implementation.
-QuestionGenerator: Generates questions based on the document content. OpenAIQuestionGenerator uses OpenAI's GPT model.
-AnswerGenerator: Generates answers to questions. OpenAIAnswerGenerator uses OpenAI's GPT model.
-Evaluator: Evaluates the quality of generated answers. F1Evaluator is provided as a default implementation.
+- Document: Represents the input document. Use PreprocessedDocument for already processed text.
+- Chunker: Splits the document into manageable pieces. SimpleChunker is provided out of the box.
+- Embedder: Generates vector representations of text. OpenAIEmbedder uses OpenAI's embedding model.
+- VectorStore: Stores and retrieves vector representations. ChromaStore is provided as a default implementation.
+- QuestionGenerator: Generates questions based on the document content. OpenAIQuestionGenerator uses OpenAI's GPT model.
+- AnswerGenerator: Generates answers to questions. OpenAIAnswerGenerator uses OpenAI's GPT model.
+- Evaluator: Evaluates the quality of generated answers. F1Evaluator is provided as a default implementation.
 
 ## Customization
 
@@ -86,11 +86,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License.
-
-##Acknowledgments
-
-OpenAI for their GPT and embedding models
-Chroma for their vector database
 
 ## Support
 
