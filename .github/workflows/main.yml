@@ -14,7 +14,7 @@ on:
       - 'README.md'
       - 'LICENSE'
       - 'docs/**'
-      - '.gitignore']
+      - '.gitignore'
 
 jobs:
   test:
