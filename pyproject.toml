@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "docqa-bench"
-version = "0.1.1"
+version = "0.1.2"
 description = "A library for benchmarking document QA systems"
 authors = ["Joshua Oliphant <joshua.oliphant@hey.com>"]
 license = "MIT"
@@ -9,10 +9,9 @@ repository = "https://github.com/JoshuaOliphant/docqa_bench"
 packages = [{include = "docqa_bench"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8.1"
 openai = "^0.27.0"
 chromadb = "^0.3.0"
-pypdf = "^3.0.0"
 langchain = "^0.0.150"
 scikit-learn = "^1.0.2"
 

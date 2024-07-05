@@ -14,7 +14,19 @@ class Benchmark:
                  embedder: BaseEmbedder, vector_store: BaseVectorStore,
                  question_generator: BaseQuestionGenerator,
                  answer_generator: BaseAnswerGenerator,
-                 evaluator: BaseEvaluator):
+                 evaluator: BaseEvaluator) -> None:
+        """
+        Initializes the Benchmark class with required components.
+
+        Args:
+            document (BaseDocument): The document to be processed.
+            chunker (BaseChunker): The chunker to divide the document.
+            embedder (BaseEmbedder): The embedder to convert chunks into embeddings.
+            vector_store (BaseVectorStore): The vector store to store embeddings.
+            question_generator (BaseQuestionGenerator): The question generator.
+            answer_generator (BaseAnswerGenerator): The answer generator.
+            evaluator (BaseEvaluator): The evaluator to score the answers.
+        """
         self.document = document
         self.chunker = chunker
         self.embedder = embedder
@@ -24,6 +36,13 @@ class Benchmark:
         self.evaluator = evaluator
 
     async def run(self) -> List[Dict[str, Any]]:
+        """
+        Runs the benchmarking process asynchronously.
+
+        Returns:
+            List[Dict[str, Any]]: Results containing questions, generated answers,
+            reference answers, and evaluation scores.
+        """
         content = await self.document.get_content()
         chunks = await self.chunker.chunk(content)
 
@@ -85,6 +104,21 @@ class Benchmark:
             question_generator: BaseQuestionGenerator,
             answer_generator: BaseAnswerGenerator,
             evaluator: BaseEvaluator) -> Dict[str, Any]:
+        """
+        Evaluates scraped content from a string.
+
+        Args:
+            content (str): The original content to evaluate.
+            chunker (BaseChunker): The chunker to divide the content.
+            embedder (BaseEmbedder): The embedder to convert chunks into embeddings.
+            vector_store (BaseVectorStore): The vector store to store embeddings.
+            question_generator (BaseQuestionGenerator): The question generator.
+            answer_generator (BaseAnswerGenerator): The answer generator.
+            evaluator (BaseEvaluator): The evaluator to score the answers.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing input content, results and metadata.
+        """
         document = PreprocessedDocument(content)
         benchmark = cls(document, chunker, embedder, vector_store,
                         question_generator, answer_generator, evaluator)
