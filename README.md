@@ -1,3 +1,4 @@
+![example workflow](https://github.com/JoshuaOliphant/docqa_bench/actions/workflows/main.yml/badge.svg)
 # DocQA-Bench
 
 DocQA-Bench is a library for benchmarking document question-answering systems. It provides a flexible framework for evaluating various components of a QA pipeline, including document chunking, embedding generation, vector storage, question generation, and answer generation.
