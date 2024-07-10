@@ -51,6 +51,7 @@ class Benchmark:
         content = await self.document.get_content()
         chunks = await self.chunker.chunk(content)
 
+        # Use batch embedding
         embeddings = await self.embedder.embed_batch(chunks)
 
         # Filter out empty embeddings
