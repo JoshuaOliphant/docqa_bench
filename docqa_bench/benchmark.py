@@ -1,4 +1,5 @@
 from typing import List, Dict, Any
+import logging
 from docqa_bench.core.document import BaseDocument, PreprocessedDocument
 from docqa_bench.core.chunker import BaseChunker
 from docqa_bench.core.embedder import BaseEmbedder
@@ -6,6 +7,9 @@ from docqa_bench.core.vector_store import BaseVectorStore
 from docqa_bench.core.question_generator import BaseQuestionGenerator
 from docqa_bench.core.answer_generator import BaseAnswerGenerator
 from docqa_bench.core.evaluator import BaseEvaluator
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 class Benchmark:
@@ -51,7 +55,11 @@ class Benchmark:
         content = await self.document.get_content()
         chunks = await self.chunker.chunk(content)
 
-        embeddings = await self.embedder.embed_batch(chunks)
+        try:
+            embeddings = await self.embedder.embed_batch(chunks)
+        except Exception as e:
+            logger.error(f"Failed to embed chunks: {e}")
+            embeddings = []
 
         # Filter out empty embeddings
         valid_chunks_and_embeddings = [
