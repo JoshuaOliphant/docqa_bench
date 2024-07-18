@@ -41,12 +41,12 @@ def vector_store():
 
 @pytest.fixture
 def question_generator():
-    return OpenAIQuestionGenerator("gpt-4o-mini-0125")
+    return OpenAIQuestionGenerator("gpt-4o-mini")
 
 
 @pytest.fixture
 def answer_generator():
-    return OpenAIAnswerGenerator("gpt-4o-mini-0125")
+    return OpenAIAnswerGenerator("gpt-4o-mini")
 
 
 @pytest.fixture
