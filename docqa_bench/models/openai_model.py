@@ -7,7 +7,7 @@ from docqa_bench.core.answer_generator import BaseAnswerGenerator
 
 class OpenAIQuestionGenerator(BaseQuestionGenerator):
 
-    def __init__(self, model: str = "gpt-3.5-turbo"):
+    def __init__(self, model: str = "gpt-4o-mini"):
         self.model = model
         self.client = OpenAI()
 
@@ -16,18 +16,18 @@ class OpenAIQuestionGenerator(BaseQuestionGenerator):
             response = await asyncio.to_thread(
                 self.client.chat.completions.create,
                 model=self.model,
-                messages=[{
-                    "role":
-                    "system",
-                    "content":
-                    "Generate questions based on the given context."
-                }, {
-                    "role":
-                    "user",
-                    "content":
-                    f"Context: {context}\n\nGenerate {n} questions:"
-                }])
-            return response.choices[0].message.content.strip().split('\n')
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "Generate questions based on the given context.",
+                    },
+                    {
+                        "role": "user",
+                        "content": f"Context: {context}\n\nGenerate {n} questions:",
+                    },
+                ],
+            )
+            return response.choices[0].message.content.strip().split("\n")
         except Exception as e:
             print(f"Error in OpenAIQuestionGenerator: {str(e)}")
             return []
@@ -35,7 +35,7 @@ class OpenAIQuestionGenerator(BaseQuestionGenerator):
 
 class OpenAIAnswerGenerator(BaseAnswerGenerator):
 
-    def __init__(self, model: str = "gpt-3.5-turbo"):
+    def __init__(self, model: str = "gpt-4o-mini"):
         self.model = model
         self.client = OpenAI()
 
@@ -44,17 +44,17 @@ class OpenAIAnswerGenerator(BaseAnswerGenerator):
             response = await asyncio.to_thread(
                 self.client.chat.completions.create,
                 model=self.model,
-                messages=[{
-                    "role":
-                    "system",
-                    "content":
-                    "Answer the question based on the given context."
-                }, {
-                    "role":
-                    "user",
-                    "content":
-                    f"Context: {context}\n\nQuestion: {question}"
-                }])
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "Answer the question based on the given context.",
+                    },
+                    {
+                        "role": "user",
+                        "content": f"Context: {context}\n\nQuestion: {question}",
+                    },
+                ],
+            )
             return response.choices[0].message.content.strip()
         except Exception as e:
             print(f"Error in OpenAIAnswerGenerator: {str(e)}")

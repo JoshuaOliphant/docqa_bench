@@ -1,8 +1,15 @@
 import pytest
 import uuid
-from docqa_bench import (Benchmark, PreprocessedDocument, SimpleChunker,
-                         OpenAIEmbedder, ChromaStore, OpenAIQuestionGenerator,
-                         OpenAIAnswerGenerator, F1Evaluator)
+from docqa_bench import (
+    Benchmark,
+    PreprocessedDocument,
+    SimpleChunker,
+    OpenAIEmbedder,
+    ChromaStore,
+    OpenAIQuestionGenerator,
+    OpenAIAnswerGenerator,
+    F1Evaluator,
+)
 
 # Mock data
 SAMPLE_TEXT = "The quick brown fox jumps over the lazy dog. This is a sample text for testing purposes."
@@ -34,12 +41,12 @@ def vector_store():
 
 @pytest.fixture
 def question_generator():
-    return OpenAIQuestionGenerator("gpt-3.5-turbo-0125")
+    return OpenAIQuestionGenerator("gpt-4o-mini-0125")
 
 
 @pytest.fixture
 def answer_generator():
-    return OpenAIAnswerGenerator("gpt-3.5-turbo-0125")
+    return OpenAIAnswerGenerator("gpt-4o-mini-0125")
 
 
 @pytest.fixture
@@ -48,10 +55,24 @@ def evaluator():
 
 
 @pytest.fixture
-def benchmark(document, chunker, embedder, vector_store, question_generator,
-              answer_generator, evaluator):
-    return Benchmark(document, chunker, embedder, vector_store,
-                     question_generator, answer_generator, evaluator)
+def benchmark(
+    document,
+    chunker,
+    embedder,
+    vector_store,
+    question_generator,
+    answer_generator,
+    evaluator,
+):
+    return Benchmark(
+        document,
+        chunker,
+        embedder,
+        vector_store,
+        question_generator,
+        answer_generator,
+        evaluator,
+    )
 
 
 # Tests
@@ -115,18 +136,20 @@ async def test_benchmark_run(benchmark):
     assert isinstance(results, list)
     assert len(results) > 0
     assert all(isinstance(result, dict) for result in results)
-    assert all("question" in result and "score" in result
-               for result in results)
+    assert all("question" in result and "score" in result for result in results)
 
 
 @pytest.mark.asyncio
 async def test_benchmark_evaluate_scraped_content():
     results = await Benchmark.evaluate_scraped_content(
-        SAMPLE_TEXT, SimpleChunker(chunk_size=20, chunk_overlap=5),
+        SAMPLE_TEXT,
+        SimpleChunker(chunk_size=20, chunk_overlap=5),
         OpenAIEmbedder("text-embedding-ada-002"),
         ChromaStore("test_collection"),
-        OpenAIQuestionGenerator("gpt-3.5-turbo"),
-        OpenAIAnswerGenerator("gpt-3.5-turbo"), F1Evaluator())
+        OpenAIQuestionGenerator("gpt-4o-mini"),
+        OpenAIAnswerGenerator("gpt-4o-mini"),
+        F1Evaluator(),
+    )
     assert isinstance(results, dict)
     assert "input_content" in results
     assert "results" in results

@@ -48,8 +48,8 @@ async def run_benchmark(content: str):
     chunker = SimpleChunker(chunk_size=1000, chunk_overlap=200)
     embedder = OpenAIEmbedder("text-embedding-ada-002")
     vector_store = ChromaStore("benchmark_collection")
-    question_generator = OpenAIQuestionGenerator("gpt-3.5-turbo")
-    answer_generator = OpenAIAnswerGenerator("gpt-3.5-turbo")
+    question_generator = OpenAIQuestionGenerator("gpt-4o-mini")
+    answer_generator = OpenAIAnswerGenerator("gpt-4o-mini")
     evaluator = F1Evaluator()
 
     benchmark = Benchmark(

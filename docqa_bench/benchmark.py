@@ -147,6 +147,5 @@ class Benchmark:
             "results": results,
             "metadata": {
                 "num_chunks": await vector_store.count(),
-                # Add any other relevant metadata here
             },
         }
